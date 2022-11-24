@@ -37,8 +37,12 @@ button {
   fill: var(--primary-color);
 }
 
+button svg {
+  width: clamp(3.2rem, 2rem + 12vw, 6.4rem); /*propriedade para não precisar utilizar media query*/
+}
+
 #timer {
-  font-size: 8.8rem;
+  font-size: clamp(4rem, 4rem + 10vw, 8.8rem); /*propriedade para não precisar utilizar media query*/
   display: flex;
 }
 
@@ -47,6 +51,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 3.2rem;
   border-radius: 9999px;
-
+  width: clamp(10rem, 10rem + 30vw, 22.8rem); /*propriedade para não precisar utilizar media query*/
+  height: clamp(8rem, 5rem + 10vw, 10.8rem);  /*propriedade para não precisar utilizar media query*/
 }
+
