@@ -7,7 +7,7 @@
 :root {
   --bg-color: #121214;
 
-  --base-color: 10;
+  --base-color: 0;
   --bg-primary-light: hsla(var(--base-color), 100%, 63%, 0.13);
   --primary-color: hsl(var(--base-color), 100%, 63%);
   --text-color: #FFFFFF;
