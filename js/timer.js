@@ -1,16 +1,17 @@
-export function Timer({
+export default function Timer({
   minutesDisplay,
   secondsDisplay,
   timerTimeOut,
   resetControls
-})/*desestruturar objeto*/{
-  function updateTimerDisplay(minutes, seconds) {
+}) 
+/*desestruturar objeto*/{
+  function updateDisplay(minutes, seconds) {
     minutesDisplay.textContent = String(minutes).padStart(2,'0')
     secondsDisplay.textContent = String(seconds).padStart(2,'0')
   }
   
-  function resetTimer() {
-    updateTimerDisplay(minutes, 0) 
+  function reset() {
+    updateDisplay(minutes, 0) 
     clearTimeout(timerTimeOut)
   }
   
@@ -19,7 +20,7 @@ export function Timer({
       let seconds = Number(secondsDisplay.textContent)
       let minutes = Number(minutesDisplay.textContent)
   
-      updateTimerDisplay(minutes, 0)
+      updateDisplay(minutes, 0)
   
       if (minutes <= 0) {
         resetControls()
@@ -31,7 +32,7 @@ export function Timer({
         --minutes //decrementar o minutes
       }
   
-      updateTimerDisplay(minutes, String(seconds -1))
+      updateDisplay(minutes, String(seconds -1))
   
       countdown()
     }, 1000) // 1000 = é em milesegundos, ou seja, 1000ms = 1s
@@ -39,6 +40,7 @@ export function Timer({
 
   return {
     countdown,
-    resetControls,
+    reset,
+    updateDisplay,
   }
 }

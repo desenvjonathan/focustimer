@@ -1,6 +1,6 @@
 //EcmaScript - 2015 - (ES6) Modules
-import { resetControls } from "./controls.js"
-import { Timer } from "./timer.js"
+import Controls from "./controls.js"
+import Timer from "./timer.js"
 
 // DOM 
 // Document Object Model
@@ -20,32 +20,33 @@ let timerTimeOut
 // Programação Imperativa (Programação que dá ordens, passo a passo COMO precisa ser feito)
 // Programação Declarativa (Programação que apenas declara O QUE vai fazer e não COMO)
 // Callback (chamar de volta) ou seja, vai ficar guardado e vai executar devido a alguma ação
+const controls = Controls({
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonSet,
+}) 
 
 const timer = Timer({
   minutesDisplay,
   secondsDisplay,
   timerTimeOut,
-  resetControls
+  resetControls: controls.reset
 }) //injeção de dados
 
 buttonPlay.addEventListener('click', function () {
-  buttonPlay.classList.add('hide')
-  buttonPause.classList.remove('hide')
-  buttonSet.classList.add('hide')
-  buttonStop.classList.remove('hide')
-
+  controls.play()
   timer.countdown()
 })
 
 buttonPause.addEventListener('click', function () {
-  buttonPause.classList.add('hide')
-  buttonPlay.classList.remove('hide')
+  controls.pause()
   clearTimeout(timerTimeOut) 
 })
 
 buttonStop.addEventListener('click', function () {
-  resetControls() //programação declarativa  (o que deve ser feito)
-  timer.resetTimer()
+  controls.reset() //programação declarativa  (o que deve ser feito)
+  timer.reset()
 })
 
 buttonSoundOff.addEventListener('click', function () {
@@ -59,12 +60,13 @@ buttonSoundOn.addEventListener('click', function () {
 })
 
 buttonSet.addEventListener('click', function () {
-  let newMinutes = prompt('Quantos minutos?') 
+  let newMinutes = controls.getMinutes()
+
   if (!newMinutes) { //se não tiver os minutes
-    timer.resetTimer()
+    timer.reset()
     return
   }
 
   minutes = newMinutes
-  updateTimerDisplay(minutes, 0)
+  timer.updateDisplay(minutes, 0)
 })
