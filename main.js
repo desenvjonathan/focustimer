@@ -3,7 +3,7 @@
 // Refatoração: mudar um código para deixá-lo mais entendível e performático, sem alterar suas funcionalidades
 
 const buttonPlay = document.querySelector('.play')
-const buttonPause =  document.querySelector('.pause')
+const buttonPause = document.querySelector('.pause')
 const buttonStop = document.querySelector('.stop')
 const buttonSet = document.querySelector('.set')
 const buttonSoundOn = document.querySelector('.sound-on')
@@ -12,12 +12,26 @@ let minutes
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
 function countdown() {
-  setTimeout(function() {
+  setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
-    if(seconds <= 0){
-      seconds = 60
+    let minutes = Number(minutesDisplay.textContent)
+
+    secondsDisplay.textContent = String(seconds - 1).padStart(2, '0')
+
+    if (minutes <= 0) {
+      buttonPlay.classList.remove('hide')
+      buttonPause.classList.add('hide')
+      buttonSet.classList.remove('hide')
+      buttonStop.classList.add('hide')
+      return
     }
-    secondsDisplay.textContent = seconds -1
+
+    if (seconds <= 0) {
+      seconds = 2
+
+      minutesDisplay.textContent = String(minutes - 1).padStart(2, '0')
+    }
+    secondsDisplay.textContent = String(seconds - 1).padStart(2, '0')
     countdown()
   }, 1000) // 1000 = é em milesegundos, ou seja, 1000ms = 1s
 }
@@ -25,7 +39,7 @@ function countdown() {
 // Event-driven (dirigido a evento)
 // Programação Imperativa (Programação que dá ordens, passo a passo do que precisa ser feito)
 // Callback (chamar de volta) ou seja, vai ficar guardado e vai executar devido a alguma ação
-buttonPlay.addEventListener('click', function() {
+buttonPlay.addEventListener('click', function () {
   buttonPlay.classList.add('hide')
   buttonPause.classList.remove('hide')
   buttonSet.classList.add('hide')
@@ -34,29 +48,29 @@ buttonPlay.addEventListener('click', function() {
   countdown()
 })
 
-buttonPause.addEventListener('click', function() {
+buttonPause.addEventListener('click', function () {
   buttonPause.classList.add('hide')
   buttonPlay.classList.remove('hide')
 })
 
-buttonStop.addEventListener('click', function() {
+buttonStop.addEventListener('click', function () {
   buttonPlay.classList.remove('hide')
   buttonPause.classList.add('hide')
   buttonSet.classList.remove('hide')
   buttonStop.classList.add('hide')
 })
 
-buttonSoundOff.addEventListener('click', function() {
+buttonSoundOff.addEventListener('click', function () {
   buttonSoundOn.classList.remove('hide')
   buttonSoundOff.classList.add('hide')
 })
 
-buttonSoundOn.addEventListener('click', function() {
+buttonSoundOn.addEventListener('click', function () {
   buttonSoundOn.classList.add('hide')
   buttonSoundOff.classList.remove('hide')
 })
 
-buttonSet.addEventListener('click', function() {
+buttonSet.addEventListener('click', function () {
   minutes = prompt('Quantos minutos?')
-  minutesDisplay.textContent = minutes
+  minutesDisplay.textContent = String(minutes).padStart(2,'0')
 })
