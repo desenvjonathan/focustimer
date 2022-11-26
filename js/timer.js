@@ -1,10 +1,11 @@
 export default function Timer({
   minutesDisplay,
   secondsDisplay,
-  timerTimeOut,
-  resetControls
-}) 
-/*desestruturar objeto*/{
+  resetControls,
+})/*desestruturar objeto*/{
+  let timerTimeOut
+  let minutes = Number(minutesDisplay.textContent)
+
   function updateDisplay(minutes, seconds) {
     minutesDisplay.textContent = String(minutes).padStart(2,'0')
     secondsDisplay.textContent = String(seconds).padStart(2,'0')
@@ -38,9 +39,19 @@ export default function Timer({
     }, 1000) // 1000 = é em milesegundos, ou seja, 1000ms = 1s
   }
 
+  function updateMinutes(newMinutes) {
+    minutes = newMinutes
+  }
+
+  function holdTheTime() {
+    clearTimeout(timerTimeOut)
+  }
+
   return {
     countdown,
     reset,
     updateDisplay,
+    updateMinutes,
+    holdTheTime,
   }
 }

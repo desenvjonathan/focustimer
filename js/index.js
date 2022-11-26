@@ -2,9 +2,12 @@
 import Controls from "./controls.js"
 import Timer from "./timer.js"
 
-// DOM 
-// Document Object Model
+// DOM - Document Object Model
 // Refatoração: mudar um código para deixá-lo mais entendível e performático, sem alterar suas funcionalidades
+// Event-driven (dirigido a evento)
+// Programação Imperativa (Programação que dá ordens, passo a passo COMO precisa ser feito)
+// Programação Declarativa (Programação que apenas declara O QUE vai fazer e não COMO)
+// Callback (chamar de volta) ou seja, vai ficar guardado e vai executar devido a alguma ação
 const buttonPlay = document.querySelector('.play')
 const buttonPause = document.querySelector('.pause')
 const buttonStop = document.querySelector('.stop')
@@ -13,25 +16,16 @@ const buttonSoundOn = document.querySelector('.sound-on')
 const buttonSoundOff = document.querySelector('.sound-off')
 const minutesDisplay = document.querySelector('.minutes')
 const secondsDisplay = document.querySelector('.seconds')
-let minutes = Number(minutesDisplay.textContent)
-let timerTimeOut
-
-// Event-driven (dirigido a evento)
-// Programação Imperativa (Programação que dá ordens, passo a passo COMO precisa ser feito)
-// Programação Declarativa (Programação que apenas declara O QUE vai fazer e não COMO)
-// Callback (chamar de volta) ou seja, vai ficar guardado e vai executar devido a alguma ação
 const controls = Controls({
   buttonPlay,
   buttonPause,
   buttonStop,
   buttonSet,
-}) 
-
+}) //injeção de dados
 const timer = Timer({
   minutesDisplay,
   secondsDisplay,
-  timerTimeOut,
-  resetControls: controls.reset
+  resetControls: controls.reset,
 }) //injeção de dados
 
 buttonPlay.addEventListener('click', function () {
@@ -41,7 +35,7 @@ buttonPlay.addEventListener('click', function () {
 
 buttonPause.addEventListener('click', function () {
   controls.pause()
-  clearTimeout(timerTimeOut) 
+  timer.holdTheTime()
 })
 
 buttonStop.addEventListener('click', function () {
@@ -67,6 +61,6 @@ buttonSet.addEventListener('click', function () {
     return
   }
 
-  minutes = newMinutes
-  timer.updateDisplay(minutes, 0)
+  timer.updateDisplay(newMinutes, 0)
+  timer.updateMinutes(newMinutes)
 })
