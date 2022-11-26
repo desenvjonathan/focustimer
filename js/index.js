@@ -1,6 +1,6 @@
 //EcmaScript - 2015 - (ES6) Modules
 import { resetControls } from "./controls.js"
-import { updateTimerDisplay, resetTimer, countdown } from "./timer.js"
+import { Timer } from "./timer.js"
 
 // DOM 
 // Document Object Model
@@ -20,13 +20,21 @@ let timerTimeOut
 // Programação Imperativa (Programação que dá ordens, passo a passo COMO precisa ser feito)
 // Programação Declarativa (Programação que apenas declara O QUE vai fazer e não COMO)
 // Callback (chamar de volta) ou seja, vai ficar guardado e vai executar devido a alguma ação
+
+const timer = Timer({
+  minutesDisplay,
+  secondsDisplay,
+  timerTimeOut,
+  resetControls
+}) //injeção de dados
+
 buttonPlay.addEventListener('click', function () {
   buttonPlay.classList.add('hide')
   buttonPause.classList.remove('hide')
   buttonSet.classList.add('hide')
   buttonStop.classList.remove('hide')
 
-  countdown()
+  timer.countdown()
 })
 
 buttonPause.addEventListener('click', function () {
@@ -37,7 +45,7 @@ buttonPause.addEventListener('click', function () {
 
 buttonStop.addEventListener('click', function () {
   resetControls() //programação declarativa  (o que deve ser feito)
-  resetTimer()
+  timer.resetTimer()
 })
 
 buttonSoundOff.addEventListener('click', function () {
@@ -53,7 +61,7 @@ buttonSoundOn.addEventListener('click', function () {
 buttonSet.addEventListener('click', function () {
   let newMinutes = prompt('Quantos minutos?') 
   if (!newMinutes) { //se não tiver os minutes
-    resetTimer()
+    timer.resetTimer()
     return
   }
 
