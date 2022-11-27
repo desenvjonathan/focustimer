@@ -1,4 +1,4 @@
-# Calculadora de IMC
+# FocusTimer
 
 ![preview](./.github/preview.gif)
 
