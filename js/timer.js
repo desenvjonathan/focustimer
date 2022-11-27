@@ -1,11 +1,13 @@
+import Sounds from "./sounds.js"
+
 export default function Timer({
   minutesDisplay,
   secondsDisplay,
   resetControls,
+  sound
 })/*desestruturar objeto*/{
   let timerTimeOut
   let minutes = Number(minutesDisplay.textContent)
-  let isFinished = minutes <= 0 && seconds <= 0
 
   function updateDisplay(newMinutes, seconds) {
     // falsy
@@ -30,17 +32,19 @@ export default function Timer({
     timerTimeOut = setTimeout(function () {
       let seconds = Number(secondsDisplay.textContent)
       let minutes = Number(minutesDisplay.textContent)
+      let isFinished = minutes <= 0 && seconds <= 0
   
       updateDisplay(minutes, 0)
   
       if (isFinished) {
         resetControls()
         updateDisplay()
+        Sounds().timeEnd()
         return
       }
   
       if (seconds <= 0) {
-        seconds = 60
+        seconds = 2
         --minutes //decrementar o minutes
       }
   

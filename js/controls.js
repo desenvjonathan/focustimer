@@ -1,8 +1,8 @@
 export default function Controls({
-  buttonPlay,
   buttonPause,
-  buttonStop,
+  buttonPlay,
   buttonSet,
+  buttonStop,
 }) {
   function play() {
     buttonPlay.classList.add('hide')
