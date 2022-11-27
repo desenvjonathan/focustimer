@@ -5,7 +5,7 @@ import {
   buttonSoundOff,
   buttonSoundOn,
   buttonStop
-} from "./elements"
+} from "./elements.js"
 
 export default function({controls, timer, sound}) {
 
