@@ -8,7 +8,7 @@ Projeto desenvolvido durante o curso Explorer da Rocketseat, no módulo de Avan�
 
 ### Funções
 - Play
-- Pausar
+- Pause
 - Stop (ao dar stop, o tempo volta para o último valor que você colocou)
 - Escolher o tempo (até 60 minutos)
 - Som de aviso ao zerar o timer 
