@@ -4,7 +4,7 @@
 
 > Trilha Explorer
 
-Projeto desenvolvido durante o curso Explorer da Rocketseat, para construirmos um timer, utilizando JavaScript.
+Projeto desenvolvido durante o curso Explorer da Rocketseat, no módulo de Avançando na programação WEB com JavaScript, para construirmos um timer.
 
 ### Funções
 - Play
